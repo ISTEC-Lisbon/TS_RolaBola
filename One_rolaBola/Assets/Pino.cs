@@ -6,19 +6,29 @@ public class Pino : MonoBehaviour
 {
     private AudioSource som;
 
+    private ControllerScript _controllerScript;
+    private bool _isDead;
+
     // Start is called before the first frame update
     void Start()
     {
         som = GetComponent<AudioSource>();
+        _controllerScript = GameObject.Find("Controller").GetComponent<ControllerScript>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Ja Fostes");
-            som.Play();
-            Destroy(transform.gameObject, 0.5f);
+            if (!_isDead)
+            {
+                _isDead = true;
+                Debug.Log("Ja Fostes");
+                som.Play();
+                Destroy(transform.gameObject, 0.5f);
+                _controllerScript.Scoring();
+            }
+
         }
     }
 
