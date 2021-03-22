@@ -12,7 +12,7 @@ public class ControllerScript : MonoBehaviour
     private int _score;
     private float _tempo;
     private bool _isPlaying;
-    private ControllerScript _instancia;
+    private static ControllerScript _instancia;
 
     private void Awake()
     {
@@ -29,6 +29,8 @@ public class ControllerScript : MonoBehaviour
     private void Start()
     {
         _tempo = 0;
+        
+        
         _isPlaying = true;
         _txtScore = GameObject.Find("txtScore").GetComponent<Text>();
         _txtTempo = GameObject.Find("txtTempo").GetComponent<Text>();
